@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IDB Shop Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand sidebar-brand" href="/">IDB Shop</a>
+        <nav class="side-nav">
+          <a href="/#home">Home</a>
+          <a href="/#user-section">User Section</a>
+          <a href="/admin.html#admin-section">Admin Section</a>
+          <a href="/#about">About</a>
+        </nav>
+      </aside>
+
+      <main class="layout">
+      <section class="panel" id="admin-section">
+        <h1>Admin Section</h1>
+        <p>Manage products for the shop from this area.</p>
+      </section>
+
+      <section class="panel" id="adminLoginPanel">
+        <h1>Admin Panel</h1>
+        <p>Login with the admin password to add, update, and delete products.</p>
+        <form id="adminLoginForm" class="inline-form">
+          <input name="password" type="password" placeholder="Admin password" required>
+          <button type="submit">Login</button>
+        </form>
+      </section>
+
+      <section class="admin-layout is-hidden" id="adminWorkPanel">
+        <form id="productForm" class="panel product-form">
+          <h2 id="formTitle">Add Product</h2>
+          <input type="hidden" name="id">
+          <label>
+            Product Name
+            <input name="name" required>
+          </label>
+          <label>
+            Price
+            <input name="price" type="number" min="0" step="0.01" required>
+          </label>
+          <label>
+            Stock
+            <input name="stock" type="number" min="0" step="1" value="10" required>
+          </label>
+          <label>
+            Product Image
+            <input name="image" type="file" accept="image/*">
+          </label>
+          <label>
+            Description
+            <textarea name="description" rows="4"></textarea>
+          </label>
+          <div class="button-row">
+            <button type="submit">Save Product</button>
+            <button type="button" id="cancelEditBtn" class="secondary">Cancel</button>
+          </div>
+        </form>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>All Products</h2>
+            <button id="adminLogoutBtn" class="secondary">Logout</button>
+          </div>
+          <div id="adminProducts" class="admin-products"></div>
+        </section>
+      </section>
+
+      <p id="adminMessage" class="message"></p>
+      </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
